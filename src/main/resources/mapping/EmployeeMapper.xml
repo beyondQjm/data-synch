@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="qjm.data.synch.mapper.EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="qjm.data.synch.modle.Employee" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="employee_id" property="employeeId" jdbcType="VARCHAR" />
+    <result column="identity_type" property="identityType" jdbcType="INTEGER" />
+    <result column="identity_id" property="identityId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="birth" property="birth" jdbcType="DATE" />
+    <result column="birth_year" property="birthYear" jdbcType="INTEGER" />
+    <result column="birth_month" property="birthMonth" jdbcType="INTEGER" />
+    <result column="birth_day" property="birthDay" jdbcType="INTEGER" />
+    <result column="image_path" property="imagePath" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="tall" property="tall" jdbcType="VARCHAR" />
+    <result column="blood_type" property="bloodType" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="INTEGER" />
+    <result column="jiguan" property="jiguan" jdbcType="INTEGER" />
+    <result column="birth_place" property="birthPlace" jdbcType="INTEGER" />
+    <result column="ethic" property="ethic" jdbcType="INTEGER" />
+    <result column="marital_status" property="maritalStatus" jdbcType="INTEGER" />
+    <result column="have_child" property="haveChild" jdbcType="INTEGER" />
+    <result column="politic_face" property="politicFace" jdbcType="INTEGER" />
+    <result column="join_party_date" property="joinPartyDate" jdbcType="DATE" />
+    <result column="full_party_date" property="fullPartyDate" jdbcType="DATE" />
+    <result column="local_party_branch" property="localPartyBranch" jdbcType="VARCHAR" />
+    <result column="party_job" property="partyJob" jdbcType="INTEGER" />
+    <result column="work_date" property="workDate" jdbcType="DATE" />
+    <result column="join_date" property="joinDate" jdbcType="DATE" />
+    <result column="employment_category" property="employmentCategory" jdbcType="INTEGER" />
+    <result column="job_status" property="jobStatus" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="office_telephone" property="officeTelephone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="emerg_cont_person" property="emergContPerson" jdbcType="VARCHAR" />
+    <result column="emerg_cont_methon" property="emergContMethon" jdbcType="VARCHAR" />
+    <result column="emerg_cont_addr" property="emergContAddr" jdbcType="VARCHAR" />
+    <result column="emp_code" property="empCode" jdbcType="VARCHAR" />
+    <result column="table_date" property="tableDate" jdbcType="TIMESTAMP" />
+    <result column="table_status" property="tableStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, employee_id, identity_type, identity_id, name, gender, birth, birth_year, birth_month, 
+    birth_day, image_path, age, tall, blood_type, nation, jiguan, birth_place, ethic, 
+    marital_status, have_child, politic_face, join_party_date, full_party_date, local_party_branch, 
+    party_job, work_date, join_date, employment_category, job_status, phone, office_telephone, 
+    email, address, emerg_cont_person, emerg_cont_methon, emerg_cont_addr, emp_code, 
+    table_date, table_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hr_employee
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hr_employee
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="qjm.data.synch.modle.Employee" >
+    insert into hr_employee (id, employee_id, identity_type, 
+      identity_id, name, gender, 
+      birth, birth_year, birth_month, 
+      birth_day, image_path, age, 
+      tall, blood_type, nation, 
+      jiguan, birth_place, ethic, 
+      marital_status, have_child, politic_face, 
+      join_party_date, full_party_date, local_party_branch, 
+      party_job, work_date, join_date, 
+      employment_category, job_status, phone, 
+      office_telephone, email, address, 
+      emerg_cont_person, emerg_cont_methon, emerg_cont_addr, 
+      emp_code, table_date, table_status
+      )
+    values (#{id,jdbcType=BIGINT}, #{employeeId,jdbcType=VARCHAR}, #{identityType,jdbcType=INTEGER}, 
+      #{identityId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
+      #{birth,jdbcType=DATE}, #{birthYear,jdbcType=INTEGER}, #{birthMonth,jdbcType=INTEGER}, 
+      #{birthDay,jdbcType=INTEGER}, #{imagePath,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
+      #{tall,jdbcType=VARCHAR}, #{bloodType,jdbcType=VARCHAR}, #{nation,jdbcType=INTEGER}, 
+      #{jiguan,jdbcType=INTEGER}, #{birthPlace,jdbcType=INTEGER}, #{ethic,jdbcType=INTEGER}, 
+      #{maritalStatus,jdbcType=INTEGER}, #{haveChild,jdbcType=INTEGER}, #{politicFace,jdbcType=INTEGER}, 
+      #{joinPartyDate,jdbcType=DATE}, #{fullPartyDate,jdbcType=DATE}, #{localPartyBranch,jdbcType=VARCHAR}, 
+      #{partyJob,jdbcType=INTEGER}, #{workDate,jdbcType=DATE}, #{joinDate,jdbcType=DATE}, 
+      #{employmentCategory,jdbcType=INTEGER}, #{jobStatus,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
+      #{officeTelephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{emergContPerson,jdbcType=VARCHAR}, #{emergContMethon,jdbcType=VARCHAR}, #{emergContAddr,jdbcType=VARCHAR}, 
+      #{empCode,jdbcType=VARCHAR}, #{tableDate,jdbcType=TIMESTAMP}, #{tableStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="qjm.data.synch.modle.Employee" >
+    insert into hr_employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="employeeId != null" >
+        employee_id,
+      </if>
+      <if test="identityType != null" >
+        identity_type,
+      </if>
+      <if test="identityId != null" >
+        identity_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="birth != null" >
+        birth,
+      </if>
+      <if test="birthYear != null" >
+        birth_year,
+      </if>
+      <if test="birthMonth != null" >
+        birth_month,
+      </if>
+      <if test="birthDay != null" >
+        birth_day,
+      </if>
+      <if test="imagePath != null" >
+        image_path,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="tall != null" >
+        tall,
+      </if>
+      <if test="bloodType != null" >
+        blood_type,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="jiguan != null" >
+        jiguan,
+      </if>
+      <if test="birthPlace != null" >
+        birth_place,
+      </if>
+      <if test="ethic != null" >
+        ethic,
+      </if>
+      <if test="maritalStatus != null" >
+        marital_status,
+      </if>
+      <if test="haveChild != null" >
+        have_child,
+      </if>
+      <if test="politicFace != null" >
+        politic_face,
+      </if>
+      <if test="joinPartyDate != null" >
+        join_party_date,
+      </if>
+      <if test="fullPartyDate != null" >
+        full_party_date,
+      </if>
+      <if test="localPartyBranch != null" >
+        local_party_branch,
+      </if>
+      <if test="partyJob != null" >
+        party_job,
+      </if>
+      <if test="workDate != null" >
+        work_date,
+      </if>
+      <if test="joinDate != null" >
+        join_date,
+      </if>
+      <if test="employmentCategory != null" >
+        employment_category,
+      </if>
+      <if test="jobStatus != null" >
+        job_status,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="officeTelephone != null" >
+        office_telephone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="emergContPerson != null" >
+        emerg_cont_person,
+      </if>
+      <if test="emergContMethon != null" >
+        emerg_cont_methon,
+      </if>
+      <if test="emergContAddr != null" >
+        emerg_cont_addr,
+      </if>
+      <if test="empCode != null" >
+        emp_code,
+      </if>
+      <if test="tableDate != null" >
+        table_date,
+      </if>
+      <if test="tableStatus != null" >
+        table_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityType != null" >
+        #{identityType,jdbcType=INTEGER},
+      </if>
+      <if test="identityId != null" >
+        #{identityId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null" >
+        #{birth,jdbcType=DATE},
+      </if>
+      <if test="birthYear != null" >
+        #{birthYear,jdbcType=INTEGER},
+      </if>
+      <if test="birthMonth != null" >
+        #{birthMonth,jdbcType=INTEGER},
+      </if>
+      <if test="birthDay != null" >
+        #{birthDay,jdbcType=INTEGER},
+      </if>
+      <if test="imagePath != null" >
+        #{imagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="tall != null" >
+        #{tall,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodType != null" >
+        #{bloodType,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=INTEGER},
+      </if>
+      <if test="jiguan != null" >
+        #{jiguan,jdbcType=INTEGER},
+      </if>
+      <if test="birthPlace != null" >
+        #{birthPlace,jdbcType=INTEGER},
+      </if>
+      <if test="ethic != null" >
+        #{ethic,jdbcType=INTEGER},
+      </if>
+      <if test="maritalStatus != null" >
+        #{maritalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="haveChild != null" >
+        #{haveChild,jdbcType=INTEGER},
+      </if>
+      <if test="politicFace != null" >
+        #{politicFace,jdbcType=INTEGER},
+      </if>
+      <if test="joinPartyDate != null" >
+        #{joinPartyDate,jdbcType=DATE},
+      </if>
+      <if test="fullPartyDate != null" >
+        #{fullPartyDate,jdbcType=DATE},
+      </if>
+      <if test="localPartyBranch != null" >
+        #{localPartyBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="partyJob != null" >
+        #{partyJob,jdbcType=INTEGER},
+      </if>
+      <if test="workDate != null" >
+        #{workDate,jdbcType=DATE},
+      </if>
+      <if test="joinDate != null" >
+        #{joinDate,jdbcType=DATE},
+      </if>
+      <if test="employmentCategory != null" >
+        #{employmentCategory,jdbcType=INTEGER},
+      </if>
+      <if test="jobStatus != null" >
+        #{jobStatus,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="officeTelephone != null" >
+        #{officeTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="emergContPerson != null" >
+        #{emergContPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="emergContMethon != null" >
+        #{emergContMethon,jdbcType=VARCHAR},
+      </if>
+      <if test="emergContAddr != null" >
+        #{emergContAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="empCode != null" >
+        #{empCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tableDate != null" >
+        #{tableDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableStatus != null" >
+        #{tableStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="qjm.data.synch.modle.Employee" >
+    update hr_employee
+    <set >
+      <if test="employeeId != null" >
+        employee_id = #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityType != null" >
+        identity_type = #{identityType,jdbcType=INTEGER},
+      </if>
+      <if test="identityId != null" >
+        identity_id = #{identityId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null" >
+        birth = #{birth,jdbcType=DATE},
+      </if>
+      <if test="birthYear != null" >
+        birth_year = #{birthYear,jdbcType=INTEGER},
+      </if>
+      <if test="birthMonth != null" >
+        birth_month = #{birthMonth,jdbcType=INTEGER},
+      </if>
+      <if test="birthDay != null" >
+        birth_day = #{birthDay,jdbcType=INTEGER},
+      </if>
+      <if test="imagePath != null" >
+        image_path = #{imagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="tall != null" >
+        tall = #{tall,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodType != null" >
+        blood_type = #{bloodType,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=INTEGER},
+      </if>
+      <if test="jiguan != null" >
+        jiguan = #{jiguan,jdbcType=INTEGER},
+      </if>
+      <if test="birthPlace != null" >
+        birth_place = #{birthPlace,jdbcType=INTEGER},
+      </if>
+      <if test="ethic != null" >
+        ethic = #{ethic,jdbcType=INTEGER},
+      </if>
+      <if test="maritalStatus != null" >
+        marital_status = #{maritalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="haveChild != null" >
+        have_child = #{haveChild,jdbcType=INTEGER},
+      </if>
+      <if test="politicFace != null" >
+        politic_face = #{politicFace,jdbcType=INTEGER},
+      </if>
+      <if test="joinPartyDate != null" >
+        join_party_date = #{joinPartyDate,jdbcType=DATE},
+      </if>
+      <if test="fullPartyDate != null" >
+        full_party_date = #{fullPartyDate,jdbcType=DATE},
+      </if>
+      <if test="localPartyBranch != null" >
+        local_party_branch = #{localPartyBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="partyJob != null" >
+        party_job = #{partyJob,jdbcType=INTEGER},
+      </if>
+      <if test="workDate != null" >
+        work_date = #{workDate,jdbcType=DATE},
+      </if>
+      <if test="joinDate != null" >
+        join_date = #{joinDate,jdbcType=DATE},
+      </if>
+      <if test="employmentCategory != null" >
+        employment_category = #{employmentCategory,jdbcType=INTEGER},
+      </if>
+      <if test="jobStatus != null" >
+        job_status = #{jobStatus,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="officeTelephone != null" >
+        office_telephone = #{officeTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="emergContPerson != null" >
+        emerg_cont_person = #{emergContPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="emergContMethon != null" >
+        emerg_cont_methon = #{emergContMethon,jdbcType=VARCHAR},
+      </if>
+      <if test="emergContAddr != null" >
+        emerg_cont_addr = #{emergContAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="empCode != null" >
+        emp_code = #{empCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tableDate != null" >
+        table_date = #{tableDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableStatus != null" >
+        table_status = #{tableStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="qjm.data.synch.modle.Employee" >
+    update hr_employee
+    set employee_id = #{employeeId,jdbcType=VARCHAR},
+      identity_type = #{identityType,jdbcType=INTEGER},
+      identity_id = #{identityId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      birth = #{birth,jdbcType=DATE},
+      birth_year = #{birthYear,jdbcType=INTEGER},
+      birth_month = #{birthMonth,jdbcType=INTEGER},
+      birth_day = #{birthDay,jdbcType=INTEGER},
+      image_path = #{imagePath,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      tall = #{tall,jdbcType=VARCHAR},
+      blood_type = #{bloodType,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=INTEGER},
+      jiguan = #{jiguan,jdbcType=INTEGER},
+      birth_place = #{birthPlace,jdbcType=INTEGER},
+      ethic = #{ethic,jdbcType=INTEGER},
+      marital_status = #{maritalStatus,jdbcType=INTEGER},
+      have_child = #{haveChild,jdbcType=INTEGER},
+      politic_face = #{politicFace,jdbcType=INTEGER},
+      join_party_date = #{joinPartyDate,jdbcType=DATE},
+      full_party_date = #{fullPartyDate,jdbcType=DATE},
+      local_party_branch = #{localPartyBranch,jdbcType=VARCHAR},
+      party_job = #{partyJob,jdbcType=INTEGER},
+      work_date = #{workDate,jdbcType=DATE},
+      join_date = #{joinDate,jdbcType=DATE},
+      employment_category = #{employmentCategory,jdbcType=INTEGER},
+      job_status = #{jobStatus,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      office_telephone = #{officeTelephone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      emerg_cont_person = #{emergContPerson,jdbcType=VARCHAR},
+      emerg_cont_methon = #{emergContMethon,jdbcType=VARCHAR},
+      emerg_cont_addr = #{emergContAddr,jdbcType=VARCHAR},
+      emp_code = #{empCode,jdbcType=VARCHAR},
+      table_date = #{tableDate,jdbcType=TIMESTAMP},
+      table_status = #{tableStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hr_employee
+  </select>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<configuration>
+	<property>
+		<name>hbase.rootdir</name>
+		<value>hdfs://hadoop1:9000/hbase</value>
+	</property>
+	<property>
+                <name>hbase.cluster.distributed</name>
+                <value>true</value>
+        </property>
+	<property>
+                <name>hbase.master.info.port</name>
+                <value>60010</value>
+        </property>
+	<property>
+		<name>hbase.zookeeper.property.clientPort</name>
+		<value>12181</value>
+	</property>
+	<property>
+                <name>hbase.zookeeper.quorum</name>
+                <value>hadoop2,hadoop3,hadoop4</value>
+        </property>
+	<property>
+                <name>hbase.zookeeper.property.dataDir</name>
+                <value>/home/hadoop/zookeeper/zkdata</value>
+        </property>
+</configuration>

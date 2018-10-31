@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="qjm.data.synch.mapper.EducationExperienceMapper" >
+  <resultMap id="BaseResultMap" type="qjm.data.synch.modle.EducationExperience" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="employee_id" property="employeeId" jdbcType="VARCHAR" />
+    <result column="graduate_from" property="graduateFrom" jdbcType="VARCHAR" />
+    <result column="graduate_from_other" property="graduateFromOther" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="INTEGER" />
+    <result column="degree" property="degree" jdbcType="INTEGER" />
+    <result column="edu_major" property="eduMajor" jdbcType="VARCHAR" />
+    <result column="startdt" property="startdt" jdbcType="DATE" />
+    <result column="enddt" property="enddt" jdbcType="DATE" />
+    <result column="table_date" property="tableDate" jdbcType="TIMESTAMP" />
+    <result column="table_status" property="tableStatus" jdbcType="INTEGER" />
+    <result column="extend_field_1" property="extendField1" jdbcType="VARCHAR" />
+    <result column="extend_field_2" property="extendField2" jdbcType="VARCHAR" />
+    <result column="extend_field_3" property="extendField3" jdbcType="INTEGER" />
+    <result column="extend_field_4" property="extendField4" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, employee_id, graduate_from, graduate_from_other, education, degree, edu_major, 
+    startdt, enddt, table_date, table_status, extend_field_1, extend_field_2, extend_field_3, 
+    extend_field_4
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hr_education_experience
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hr_education_experience
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="qjm.data.synch.modle.EducationExperience" >
+    insert into hr_education_experience (id, employee_id, graduate_from, 
+      graduate_from_other, education, degree, 
+      edu_major, startdt, enddt, 
+      table_date, table_status, extend_field_1, 
+      extend_field_2, extend_field_3, extend_field_4
+      )
+    values (#{id,jdbcType=BIGINT}, #{employeeId,jdbcType=VARCHAR}, #{graduateFrom,jdbcType=VARCHAR}, 
+      #{graduateFromOther,jdbcType=VARCHAR}, #{education,jdbcType=INTEGER}, #{degree,jdbcType=INTEGER}, 
+      #{eduMajor,jdbcType=VARCHAR}, #{startdt,jdbcType=DATE}, #{enddt,jdbcType=DATE}, 
+      #{tableDate,jdbcType=TIMESTAMP}, #{tableStatus,jdbcType=INTEGER}, #{extendField1,jdbcType=VARCHAR}, 
+      #{extendField2,jdbcType=VARCHAR}, #{extendField3,jdbcType=INTEGER}, #{extendField4,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="qjm.data.synch.modle.EducationExperience" >
+    insert into hr_education_experience
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="employeeId != null" >
+        employee_id,
+      </if>
+      <if test="graduateFrom != null" >
+        graduate_from,
+      </if>
+      <if test="graduateFromOther != null" >
+        graduate_from_other,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+      <if test="eduMajor != null" >
+        edu_major,
+      </if>
+      <if test="startdt != null" >
+        startdt,
+      </if>
+      <if test="enddt != null" >
+        enddt,
+      </if>
+      <if test="tableDate != null" >
+        table_date,
+      </if>
+      <if test="tableStatus != null" >
+        table_status,
+      </if>
+      <if test="extendField1 != null" >
+        extend_field_1,
+      </if>
+      <if test="extendField2 != null" >
+        extend_field_2,
+      </if>
+      <if test="extendField3 != null" >
+        extend_field_3,
+      </if>
+      <if test="extendField4 != null" >
+        extend_field_4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateFrom != null" >
+        #{graduateFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateFromOther != null" >
+        #{graduateFromOther,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=INTEGER},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="eduMajor != null" >
+        #{eduMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="startdt != null" >
+        #{startdt,jdbcType=DATE},
+      </if>
+      <if test="enddt != null" >
+        #{enddt,jdbcType=DATE},
+      </if>
+      <if test="tableDate != null" >
+        #{tableDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableStatus != null" >
+        #{tableStatus,jdbcType=INTEGER},
+      </if>
+      <if test="extendField1 != null" >
+        #{extendField1,jdbcType=VARCHAR},
+      </if>
+      <if test="extendField2 != null" >
+        #{extendField2,jdbcType=VARCHAR},
+      </if>
+      <if test="extendField3 != null" >
+        #{extendField3,jdbcType=INTEGER},
+      </if>
+      <if test="extendField4 != null" >
+        #{extendField4,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="qjm.data.synch.modle.EducationExperience" >
+    update hr_education_experience
+    <set >
+      <if test="employeeId != null" >
+        employee_id = #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateFrom != null" >
+        graduate_from = #{graduateFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateFromOther != null" >
+        graduate_from_other = #{graduateFromOther,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=INTEGER},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="eduMajor != null" >
+        edu_major = #{eduMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="startdt != null" >
+        startdt = #{startdt,jdbcType=DATE},
+      </if>
+      <if test="enddt != null" >
+        enddt = #{enddt,jdbcType=DATE},
+      </if>
+      <if test="tableDate != null" >
+        table_date = #{tableDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableStatus != null" >
+        table_status = #{tableStatus,jdbcType=INTEGER},
+      </if>
+      <if test="extendField1 != null" >
+        extend_field_1 = #{extendField1,jdbcType=VARCHAR},
+      </if>
+      <if test="extendField2 != null" >
+        extend_field_2 = #{extendField2,jdbcType=VARCHAR},
+      </if>
+      <if test="extendField3 != null" >
+        extend_field_3 = #{extendField3,jdbcType=INTEGER},
+      </if>
+      <if test="extendField4 != null" >
+        extend_field_4 = #{extendField4,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="qjm.data.synch.modle.EducationExperience" >
+    update hr_education_experience
+    set employee_id = #{employeeId,jdbcType=VARCHAR},
+      graduate_from = #{graduateFrom,jdbcType=VARCHAR},
+      graduate_from_other = #{graduateFromOther,jdbcType=VARCHAR},
+      education = #{education,jdbcType=INTEGER},
+      degree = #{degree,jdbcType=INTEGER},
+      edu_major = #{eduMajor,jdbcType=VARCHAR},
+      startdt = #{startdt,jdbcType=DATE},
+      enddt = #{enddt,jdbcType=DATE},
+      table_date = #{tableDate,jdbcType=TIMESTAMP},
+      table_status = #{tableStatus,jdbcType=INTEGER},
+      extend_field_1 = #{extendField1,jdbcType=VARCHAR},
+      extend_field_2 = #{extendField2,jdbcType=VARCHAR},
+      extend_field_3 = #{extendField3,jdbcType=INTEGER},
+      extend_field_4 = #{extendField4,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hr_education_experience
+  </select>
+</mapper>
