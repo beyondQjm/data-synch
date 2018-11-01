@@ -76,4 +76,15 @@ public class SqlDataService {
         sqlSession.close();
         return list;
     }
+
+    /**
+     * 根据id查找员工信息
+     * @return
+     */
+    public Employee getEmployeeById(Long id){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        Employee employee = sqlSession.selectOne("qjm.data.synch.mapper.EmployeeMapper.selectByPrimaryKey", id);
+        sqlSession.close();
+        return employee;
+    }
 }

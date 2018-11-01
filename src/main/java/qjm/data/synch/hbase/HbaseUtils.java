@@ -189,4 +189,11 @@ public class HbaseUtils {
         table.close();
     }
 
+    /**
+     * 删除数据
+     */
+    public <T extends HbaseSerialization> void deleteData(Class<T> clazz, Delete delete) throws IOException {
+        deleteData(getTableName(clazz), delete);
+    }
+
 }

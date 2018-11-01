@@ -502,7 +502,7 @@
 
   <insert id="insertByBatch" parameterType="java.util.List">
     insert into hr_employee
-    (employee_id, identity_type,
+    (id, employee_id, identity_type,
     identity_id, name, gender,
     birth, birth_year, birth_month,
     birth_day, image_path, age,
@@ -518,7 +518,7 @@
     )
     values
     <foreach collection="list" item="item" index="index" separator=",">
-      ( #{item.employeeId,jdbcType=VARCHAR}, #{item.identityType,jdbcType=INTEGER},
+      (#{id,jdbcType=BIGINT}, #{item.employeeId,jdbcType=VARCHAR}, #{item.identityType,jdbcType=INTEGER},
       #{item.identityId,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, #{item.gender,jdbcType=INTEGER},
       #{item.birth,jdbcType=DATE}, #{item.birthYear,jdbcType=INTEGER}, #{item.birthMonth,jdbcType=INTEGER},
       #{item.birthDay,jdbcType=INTEGER}, #{item.imagePath,jdbcType=VARCHAR}, #{item.age,jdbcType=INTEGER},

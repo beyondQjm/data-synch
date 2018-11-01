@@ -167,6 +167,6 @@ public class EducationExperience extends HbaseSerializationReflect<EducationExpe
     }
 
     public byte[] getKey() {
-        return Bytes.toBytes(employeeId + education + degree);
+        return Bytes.toBytes(id);
     }
 }

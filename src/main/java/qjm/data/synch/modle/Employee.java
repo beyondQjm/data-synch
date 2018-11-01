@@ -11,7 +11,7 @@ import java.util.Date;
 @Table("employee")
 @Family("option")
 public class Employee extends HbaseSerializationReflect<Employee> {
-    @Clipping
+
     private Long id;
 
     @Family("require")
@@ -465,6 +465,6 @@ public class Employee extends HbaseSerializationReflect<Employee> {
     }
 
     public byte[] getKey() {
-        return Bytes.toBytes(employeeId);
+        return Bytes.toBytes(id);
     }
 }
