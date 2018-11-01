@@ -10,7 +10,8 @@ public class DataSynchApplication {
     public static void main(String[] args) {
         //离线数据同步
         OffLineSynch offLineSynch = new OffLineSynch();
-        offLineSynch.synch();
+        //offLineSynch.synchToHbase();
+        offLineSynch.synchFromHbase();
 
     }
 

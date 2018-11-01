@@ -18,4 +18,6 @@ public interface EmployeeMapper {
     int updateByPrimaryKey(Employee record);
 
     List<Employee> selectAll();
+
+    void insertByBatch(List<Employee> list);
 }

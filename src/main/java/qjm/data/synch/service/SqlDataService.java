@@ -14,15 +14,15 @@ import java.util.List;
 /**
  * 加载数据数
  */
-public class LoadSqlData {
+public class SqlDataService {
 
     private SqlSessionFactory sqlSessionFactory;
 
-    public LoadSqlData(String xmlPath) {
+    public SqlDataService(String xmlPath) {
         this.sqlSessionFactory = getSqlSessionFactory(xmlPath);
     }
 
-    public LoadSqlData(SqlSessionFactory sqlSessionFactory) {
+    public SqlDataService(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
@@ -39,6 +39,20 @@ public class LoadSqlData {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * 添加员工信息
+     * @return
+     */
+    public void putEmployee(List<Employee> list){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        sqlSession.insert("qjm.data.synch.mapper.EmployeeMapper.insertByBatch",list);
+        /*for (Employee e:list){
+            sqlSession.insert("qjm.data.synch.mapper.EmployeeMapper.insert",e);
+        }*/
+        sqlSession.commit();
+        sqlSession.close();
     }
 
     /**

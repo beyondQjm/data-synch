@@ -499,4 +499,40 @@
     <include refid="Base_Column_List" />
     from hr_employee
   </select>
+
+  <insert id="insertByBatch" parameterType="java.util.List">
+    insert into hr_employee
+    (employee_id, identity_type,
+    identity_id, name, gender,
+    birth, birth_year, birth_month,
+    birth_day, image_path, age,
+    tall, blood_type, nation,
+    jiguan, birth_place, ethic,
+    marital_status, have_child, politic_face,
+    join_party_date, full_party_date, local_party_branch,
+    party_job, work_date, join_date,
+    employment_category, job_status, phone,
+    office_telephone, email, address,
+    emerg_cont_person, emerg_cont_methon, emerg_cont_addr,
+    emp_code, table_date, table_status
+    )
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      ( #{item.employeeId,jdbcType=VARCHAR}, #{item.identityType,jdbcType=INTEGER},
+      #{item.identityId,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, #{item.gender,jdbcType=INTEGER},
+      #{item.birth,jdbcType=DATE}, #{item.birthYear,jdbcType=INTEGER}, #{item.birthMonth,jdbcType=INTEGER},
+      #{item.birthDay,jdbcType=INTEGER}, #{item.imagePath,jdbcType=VARCHAR}, #{item.age,jdbcType=INTEGER},
+      #{item.tall,jdbcType=VARCHAR}, #{item.bloodType,jdbcType=VARCHAR}, #{item.nation,jdbcType=INTEGER},
+      #{item.jiguan,jdbcType=INTEGER}, #{item.birthPlace,jdbcType=INTEGER}, #{item.ethic,jdbcType=INTEGER},
+      #{item.maritalStatus,jdbcType=INTEGER}, #{item.haveChild,jdbcType=INTEGER}, #{item.politicFace,jdbcType=INTEGER},
+      #{item.joinPartyDate,jdbcType=DATE}, #{item.fullPartyDate,jdbcType=DATE}, #{item.localPartyBranch,jdbcType=VARCHAR},
+      #{item.partyJob,jdbcType=INTEGER}, #{item.workDate,jdbcType=DATE}, #{item.joinDate,jdbcType=DATE},
+      #{item.employmentCategory,jdbcType=INTEGER}, #{item.jobStatus,jdbcType=INTEGER}, #{item.phone,jdbcType=VARCHAR},
+      #{item.officeTelephone,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR}, #{item.address,jdbcType=VARCHAR},
+      #{item.emergContPerson,jdbcType=VARCHAR}, #{item.emergContMethon,jdbcType=VARCHAR}, #{item.emergContAddr,jdbcType=VARCHAR},
+      #{item.empCode,jdbcType=VARCHAR}, #{item.tableDate,jdbcType=TIMESTAMP}, #{item.tableStatus,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
+
 </mapper>
