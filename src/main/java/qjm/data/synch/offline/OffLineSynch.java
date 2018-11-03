@@ -20,9 +20,11 @@ public class OffLineSynch {
         //加载数据
         SqlDataService sqlDataService = new SqlDataService("SqlMapConfig.xml");
         //加载员工信息
-        List<Employee> employees = sqlDataService.loadEmployee();
+        //List<Employee> employees = sqlDataService.loadEmployee();
+        List<Employee> employees = sqlDataService.loadAll(Employee.class);
         //加载学历信息
-        List<EducationExperience> educations = sqlDataService.loadEducationExperience();
+        //List<EducationExperience> educations = sqlDataService.loadEducationExperience();
+        List<EducationExperience> educations = sqlDataService.loadAll(EducationExperience.class);
 
         HbaseUtils hbaseUtils = new HbaseUtils();
         try {

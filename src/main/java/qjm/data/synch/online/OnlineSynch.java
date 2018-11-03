@@ -135,7 +135,8 @@ public class OnlineSynch {
         HbaseSerialization serialization = null;
         //根据不同表做处理
         if(tableName.equals("hr_employee")){
-            serialization = sqlDataService.getEmployeeById(key);
+            //serialization = sqlDataService.getEmployeeById(key);
+            serialization = sqlDataService.getById(key, Employee.class);
         }
 
         if (serialization != null){

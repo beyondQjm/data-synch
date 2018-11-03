@@ -87,4 +87,28 @@ public class SqlDataService {
         sqlSession.close();
         return employee;
     }
+
+    /**
+     * 根据id查找信息
+     * @return
+     */
+    public <T> T getById(Long id, Class<T> clazz){
+        String clazzName = clazz.getSimpleName();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        T value = sqlSession.selectOne("qjm.data.synch.mapper."+clazzName+"Mapper.selectByPrimaryKey", id);
+        sqlSession.close();
+        return value;
+    }
+
+    /**
+     * 根据id查找信息
+     * @return
+     */
+    public <T> List<T> loadAll(Class<T> clazz){
+        String clazzName = clazz.getSimpleName();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        List<T> values = sqlSession.selectList("qjm.data.synch.mapper."+clazzName+"Mapper.selectAll");
+        sqlSession.close();
+        return values;
+    }
 }
