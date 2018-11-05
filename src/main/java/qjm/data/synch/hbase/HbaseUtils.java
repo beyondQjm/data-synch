@@ -2,10 +2,14 @@ package qjm.data.synch.hbase;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.HColumnDescriptor;
+import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
+import qjm.data.synch.annotation.Family;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -196,4 +200,103 @@ public class HbaseUtils {
         deleteData(getTableName(clazz), delete);
     }
 
+    /**
+     * 创建一个表
+     *
+     * @throws Exception
+     */
+    public <T extends HbaseSerialization> void createTable(Class<T> clazz) throws Exception {
+        // 创建表管理类
+        HBaseAdmin admin = new HBaseAdmin(config); // hbase表管理
+        createTable(clazz, admin);
+        admin.close();
+    }
+
+    /**
+     * 创建表
+     *
+     * @throws Exception
+     */
+    private <T extends HbaseSerialization> void createTable(Class<T> clazz, HBaseAdmin hBaseAdmin) throws IOException {
+
+        // 创建表描述类
+        TableName tableName = TableName.valueOf(getTableName(clazz)); // 表名称
+        HTableDescriptor desc = new HTableDescriptor(tableName);
+
+        // 创建列族的描述类
+        List<String> families = getFamilies(clazz);
+        if(families.size() == 0){
+            throw new RuntimeException("Can't  found family");
+        }
+        for(String fam : families){
+            HColumnDescriptor family = new HColumnDescriptor(fam); // 列族
+            // 将列族添加到表中
+            desc.addFamily(family);
+        }
+
+        //创建
+        hBaseAdmin.createTable(desc);
+    }
+
+    /**
+     * 获取所有列簇
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public <T extends HbaseSerialization> List<String> getFamilies(Class<T> clazz){
+        List<String> families = new ArrayList();
+
+        //获取默认列簇
+        Family family = clazz.getAnnotation(Family.class);
+        if(family != null){
+            families.add(family.value());
+        }
+
+        //得到类中的所有属性集合
+        Field[] fields = clazz.getDeclaredFields();
+        //遍历属性
+        for (Field field:fields) {
+            Family fam = field.getAnnotation(Family.class);
+            if(fam != null){
+                if(!families.contains(fam.value())){
+                    families.add(fam.value());
+                }
+            }
+        }
+
+        return families;
+    }
+
+    /**
+     * 检查表是否存在
+     * @param tableName
+     * @return
+     */
+    public boolean tableExists(String tableName) throws IOException {
+        HBaseAdmin hbaseAdmin = new HBaseAdmin(config);
+        boolean exist = hbaseAdmin.tableExists(tableName);
+        hbaseAdmin.close();
+        return exist;
+    }
+
+    /**
+     * 检查表是否存在
+     * @return
+     */
+    public <T extends HbaseSerialization> boolean tableExists(Class<T> clazz) throws IOException {
+        return tableExists(getTableName(clazz));
+    }
+
+    /**
+     * 检查表是否存在
+     */
+    public <T extends HbaseSerialization> void checkAndCreateTable(Class<T> clazz) throws IOException {
+        HBaseAdmin hbaseAdmin = new HBaseAdmin(config);
+        boolean exist = hbaseAdmin.tableExists(getTableName(clazz));
+       if (!exist){
+           createTable(clazz, hbaseAdmin);
+           hbaseAdmin.close();
+       }
+    }
 }
